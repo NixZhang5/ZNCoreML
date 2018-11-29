@@ -1,2 +1,2 @@
 # ZNCoreML
-Core ML study
+Core ML
