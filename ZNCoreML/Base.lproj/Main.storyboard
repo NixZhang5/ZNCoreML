@@ -167,9 +167,15 @@
                                     <constraint firstAttribute="height" constant="229" id="9YX-Sl-2UL"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ao-RF-6Nu">
-                                <rect key="frame" x="73" y="468" width="229" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ML" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ao-RF-6Nu">
+                                <rect key="frame" x="73" y="468" width="229" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vision" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1mi-kT-V75">
+                                <rect key="frame" x="73" y="516" width="229" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -177,7 +183,10 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="1Ao-RF-6Nu" firstAttribute="trailing" secondItem="Txm-8v-GtN" secondAttribute="trailing" id="Hdq-mF-4mT"/>
+                            <constraint firstItem="1mi-kT-V75" firstAttribute="top" secondItem="1Ao-RF-6Nu" secondAttribute="bottom" constant="30" id="IOy-2l-RfG"/>
+                            <constraint firstItem="1mi-kT-V75" firstAttribute="trailing" secondItem="1Ao-RF-6Nu" secondAttribute="trailing" id="guh-Xi-gS1"/>
                             <constraint firstItem="1Ao-RF-6Nu" firstAttribute="leading" secondItem="Txm-8v-GtN" secondAttribute="leading" id="jHq-q7-EgF"/>
+                            <constraint firstItem="1mi-kT-V75" firstAttribute="leading" secondItem="1Ao-RF-6Nu" secondAttribute="leading" id="lJr-6a-8t4"/>
                             <constraint firstItem="Txm-8v-GtN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="qqv-4a-Lql"/>
                             <constraint firstItem="1Ao-RF-6Nu" firstAttribute="top" secondItem="Txm-8v-GtN" secondAttribute="bottom" constant="20" id="rh1-PH-zXv"/>
                             <constraint firstItem="Txm-8v-GtN" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="z15-CS-jmU"/>
@@ -199,6 +208,7 @@
                     <connections>
                         <outlet property="classifier" destination="1Ao-RF-6Nu" id="bps-I3-TQA"/>
                         <outlet property="imageView" destination="Txm-8v-GtN" id="JDH-7S-MbM"/>
+                        <outlet property="visionClassifier" destination="1mi-kT-V75" id="W80-zM-02b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
