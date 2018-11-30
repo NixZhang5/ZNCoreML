@@ -57,7 +57,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
         UIGraphicsEndImageContext()
         
         guard let prediction = try? model.prediction(image: newImage.buffer()!) else { return }
-        classifier.text = "ML 识别结果:\(prediction.classLabel), 匹配率:\(prediction.classLabelProbs[prediction.classLabel] ?? 0)."
+        DispatchQueue.main.async {
+            self.classifier.text = "ML 识别结果:\(prediction.classLabel), 匹配率:\(prediction.classLabelProbs[prediction.classLabel] ?? 0)."
+        }
+        print("ML 识别结果:\(prediction.classLabel), 匹配率:\(prediction.classLabelProbs[prediction.classLabel] ?? 0).")
     }
     
     func visionPredictionWithInceptionv3FromImage(_ image: UIImage) {
@@ -82,7 +85,10 @@ class ViewController: UIViewController, UINavigationControllerDelegate {
                     tempClassification = cf
                 }
             }
-            self?.visionClassifier.text = "Vision 识别结果:\(tempClassification?.identifier ?? "None"), 匹配率:\(tempClassification?.confidence ?? 0)"
+            DispatchQueue.main.async {
+                self?.visionClassifier.text = "Vision 识别结果:\(tempClassification?.identifier ?? "None"), 匹配率:\(tempClassification?.confidence ?? 0)"
+            }
+            print("Vision 识别结果:\(tempClassification?.identifier ?? "None"), 匹配率:\(tempClassification?.confidence ?? 0)")
         }
         
         do {
@@ -107,10 +113,29 @@ extension ViewController: UIImagePickerControllerDelegate {
         imageView.image = image
 
         classifier.text = "ML: Analyzing Image..."
+        visionClassifier.text = "Vision: Analyzing Image..."
+        
+        let group = DispatchGroup.init()
+        let mlQueue: DispatchQueue = DispatchQueue.init(label: "mlQueue")
+        let visionQueue: DispatchQueue = DispatchQueue.init(label: "visionQueue")
+        mlQueue.async (group: group) {
+            self.coreMLPredictionWithInceptionv3FromImage(image)
+        }
+        visionQueue.async (group: group){
+            // 耗时相对较长
+            self.visionPredictionWithInceptionv3FromImage(image)
+        }
+        group.notify(queue: DispatchQueue.main) {
+            print("end")
+        }
+        
+        /*
+        classifier.text = "ML: Analyzing Image..."
         coreMLPredictionWithInceptionv3FromImage(image)
 
         visionClassifier.text = "Vision: Analyzing Image..."
         visionPredictionWithInceptionv3FromImage(image)
+        */
     }
 }
 
